@@ -1,5 +1,5 @@
 package com.internousdev.cs.dao;
 
-public class SearchADAO {
+public class SearchDAO {
 
 }

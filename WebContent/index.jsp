@@ -9,7 +9,15 @@
 <body>
 
 <form action="SearchAction">
-	<input type="text" name="cardname">
+	カード名<br>
+	<input type="text" name="cardname"><br>
+	マナ・コスト<br>
+	<input type="text" name="manacost"><br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
 	<input type="submit" value="検索">
 
 </form>
