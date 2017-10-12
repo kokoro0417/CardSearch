@@ -8,6 +8,7 @@ public class SearchDTO {
 	private int mana;
 	private String cardtype;
 	private String ability;
+	private String imgurl;
 
 
 	public String getCardname() {
@@ -39,6 +40,12 @@ public class SearchDTO {
 	}
 	public void setAbility(String ability) {
 		this.ability = ability;
+	}
+	public String getImgurl() {
+		return imgurl;
+	}
+	public void setImgurl(String imgurl) {
+		this.imgurl = imgurl;
 	}
 
 

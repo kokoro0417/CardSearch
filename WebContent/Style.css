@@ -1,0 +1,23 @@
+@CHARSET "UTF-8";
+img {
+    width: 200px;
+    height: 300px;
+    padding-top:5px;
+    padding-left:75px;
+}
+
+h3 {
+    font-size: 25px;
+    color: red;
+}
+
+.Sbox {
+    width: 350px;
+    height: 400px;
+    background-color: antiquewhite;
+    align-content: center;
+}
+
+.textbox{
+    padding-left:75px;
+}
