@@ -16,27 +16,37 @@
 	<s:iterator value="aryDTO">
 		<br>
 		<div class="Sbox">
-			<img  src='<s:property value="imgurl"/>'><br>
-			<div class="textbox">
-				<s:property value="cardname"/>|
-				<s:property value="cardtype"/>|
-				<s:property value="mana"/>
-			</div><br>
-			<div class="textbox">
-				<s:form action="BuyItemAction">
-					<select name="count">
+			<s:form action="BuyItemAction">
+				<img  src='<s:property value="imgurl"/>'><br>
+				<div class="textbox">
+					<s:property value="cardname"/>|
+					<s:property value="price"/>円|
+					在庫：<s:property value="card_stock"/>
+				</div><br>
+				<div class="textbox">
+					<input type="hidden" value='<s:property value="cardname"/>' name="cardname">
+					<input type="hidden" value='<s:property value="card_id"/>' name="card_id">
+					<input type="hidden" value='<s:property value="price"/>' name="price">
+					<select name="buycount">
 							<option value="1" selected="selected">1</option>
 							<option value="2">2</option>
 							<option value="3">3</option>
 							<option value="4">4</option>
 							<option value="5">5</option>
 					</select>
-					<s:submit value="購入" method="buy"/>
-				</s:form>
-			</div><br>
+					<input type="submit" value="購入">
+				</div><br>
+			</s:form>
 		</div>
 		<br>
 	</s:iterator>
+
+	<br>
+	<br>
+	<br>
+	<s:form action="HomeAction">
+		<s:submit value="戻る"/>
+	</s:form>
 
 
 

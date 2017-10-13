@@ -7,9 +7,17 @@
 	<constant name="struts.devMode" value="true"/>
 
 	<package name="com.internousdev.cs.action" extends="struts-default">
+		<action name="HomeAction" class="com.internousdev.cs.action.HomeAction" method="execute">
+			<result name="success">index.jsp</result>
+		</action>
 		<action name="SearchAction" class="com.internousdev.cs.action.SearchAction" method="execute">
 			<result name="success">SearchSuccess.jsp</result>
-			<result name="error">SearchError.jsp</result>
+			<result name="error">Error.jsp</result>
+		</action>
+
+		<action name="BuyItemAction" class="com.internousdev.cs.action.BuyItemAction" method="execute">
+			<result name="success">BuyItemSuccess.jsp</result>
+			<result name="error">Error.jsp</result>
 		</action>
 
 	</package>

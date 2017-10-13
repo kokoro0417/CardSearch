@@ -1,15 +1,16 @@
 package com.internousdev.cs.action;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+
+import org.apache.struts2.interceptor.SessionAware;
 
 import com.internousdev.cs.dao.SearchDAO;
 import com.internousdev.cs.dto.SearchDTO;
 import com.opensymphony.xwork2.ActionSupport;
 
-public class SearchAction extends ActionSupport{
+public class SearchAction extends ActionSupport implements SessionAware{
 
 	private String cardname;
 	private String color;
@@ -19,7 +20,7 @@ public class SearchAction extends ActionSupport{
 	private String Imgurl;
 	public String message="";
 
-	public Map<String,Object> sMAP = new HashMap<>();
+	public Map<String,Object> session;
 	public ArrayList<SearchDTO> aryDTO =new ArrayList<SearchDTO>();
 
 	SearchDTO sDTO = new SearchDTO();
@@ -48,10 +49,11 @@ public class SearchAction extends ActionSupport{
 		System.out.println(sDTO.getMana());
 		System.out.println(sDTO.getImgurl());
 
-		sMAP.put("cardname", sDTO.getCardname());
-		sMAP.put("mana", sDTO.getMana());
-		sMAP.put("cardtype", sDTO.getCardtype());
-		sMAP.put("imgurl", sDTO.getImgurl());
+		session.put("cardname", sDTO.getCardname());
+		session.put("mana", sDTO.getMana());
+		session.put("cardtype", sDTO.getCardtype());
+		session.put("imgurl", sDTO.getImgurl());
+		session.put("aryDTO", aryDTO);
 
 		ret = SUCCESS;
 
@@ -118,7 +120,9 @@ public class SearchAction extends ActionSupport{
 		Imgurl = imgurl;
 	}
 
-
+	public void setSession(Map<String,Object> session){
+		this.session = session;
+	}
 
 
 }

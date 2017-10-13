@@ -2,13 +2,15 @@ package com.internousdev.cs.dto;
 
 public class SearchDTO {
 
-
+	private int card_id;
 	private String cardname;
 	private String color;
 	private int mana;
 	private String cardtype;
 	private String ability;
 	private String imgurl;
+	private int price;
+	private int card_stock;
 
 
 	public String getCardname() {
@@ -46,6 +48,24 @@ public class SearchDTO {
 	}
 	public void setImgurl(String imgurl) {
 		this.imgurl = imgurl;
+	}
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	public int getCard_stock() {
+		return card_stock;
+	}
+	public void setCard_stock(int card_stock) {
+		this.card_stock = card_stock;
+	}
+	public int getCard_id() {
+		return card_id;
+	}
+	public void setCard_id(int card_id) {
+		this.card_id = card_id;
 	}
 
 

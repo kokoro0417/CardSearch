@@ -24,8 +24,6 @@ public class SearchDAO {
 		String tmp = "";
 		int count = 0;
 
-		System.out.println(cardtype+"no1");
-
 		if(!(cardname.equals(""))){
 			tmp = (" cardname = '"+ cardname + "'");
 			count++;
@@ -58,10 +56,13 @@ public class SearchDAO {
 
 			while(rs.next()){
 				SearchDTO sDTO = new SearchDTO();
+				sDTO.setCard_id(rs.getInt("card_id"));
 				sDTO.setCardname(rs.getString("cardname"));
 				sDTO.setMana(rs.getInt("mana"));
 				sDTO.setCardtype(rs.getString("cardtype"));
 				sDTO.setImgurl(rs.getString("imgurl"));
+				sDTO.setPrice(rs.getInt("price"));
+				sDTO.setCard_stock(rs.getInt("card_stock"));
 				aryDTO.add(sDTO);
 			}
 
@@ -71,6 +72,7 @@ public class SearchDAO {
 
 		try{
 			con.close();
+			System.out.println("close");
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
