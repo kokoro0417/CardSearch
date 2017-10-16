@@ -8,15 +8,15 @@
 <title>購入画面</title>
 </head>
 <body>
-	<s:if test="bDTO.buyflag">
+	<s:if test="buyflag">
 		<s:property value="message"/><br><br>
-		<s:property value="cardname"/><br>
-		<s:property value="price"/>円<br>
-		<s:property value="buycount"/>枚購入<br>
+		<s:property value="#session.buycardname"/><br>
+		<s:property value="#session.price"/>円<br>
+		<s:property value="#session.buycount"/>枚購入<br>
 		合計金額<s:property value="#session.total_price"/>円
 	</s:if>
 	<s:else>
-		<s:property value="message"/>
+		<h3><s:property value="message"/></h3>
 	</s:else>
 
 <br><br>

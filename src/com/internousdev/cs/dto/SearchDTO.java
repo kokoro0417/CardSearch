@@ -3,7 +3,7 @@ package com.internousdev.cs.dto;
 public class SearchDTO {
 
 	private int card_id;
-	private String cardname;
+	private String cardname = "";
 	private String color;
 	private int mana;
 	private String cardtype;
@@ -11,6 +11,7 @@ public class SearchDTO {
 	private String imgurl;
 	private int price;
 	private int card_stock;
+	private boolean nameflag = false;
 
 
 	public String getCardname() {
@@ -67,6 +68,13 @@ public class SearchDTO {
 	public void setCard_id(int card_id) {
 		this.card_id = card_id;
 	}
+	public boolean isNameflag() {
+		return nameflag;
+	}
+	public void setNameflag(boolean nameflag) {
+		this.nameflag = nameflag;
+	}
+
 
 
 

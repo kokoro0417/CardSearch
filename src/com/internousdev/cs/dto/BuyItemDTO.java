@@ -48,6 +48,12 @@ public class BuyItemDTO {
 	public void setCard_stock(int card_stock) {
 		this.card_stock = card_stock;
 	}
+	public boolean isBuyflag() {
+		return buyflag;
+	}
+	public void setBuyflag(boolean buyflag) {
+		this.buyflag = buyflag;
+	}
 
 
 

@@ -12,13 +12,15 @@ import com.opensymphony.xwork2.ActionSupport;
 
 public class SearchAction extends ActionSupport implements SessionAware{
 
-	private String cardname;
+	private String cardname ="";
 	private String color;
-	private int mana;
-	private String cardtype;
+	private int mana =0;
+	private String cardtype ="";
 	private String ability;
 	private String Imgurl;
 	public String message="";
+	public int card_stock;
+	public int SearchCheck = 1;
 
 	public Map<String,Object> session;
 	public ArrayList<SearchDTO> aryDTO =new ArrayList<SearchDTO>();
@@ -31,7 +33,7 @@ public class SearchAction extends ActionSupport implements SessionAware{
 	public String execute(){
 		String ret = ERROR;
 
-		aryDTO = sDAO.Search(cardname,mana,cardtype);
+		aryDTO = sDAO.Search(cardname,mana,cardtype,SearchCheck);
 
 		Iterator<SearchDTO> itr = aryDTO.iterator();
 		if(!(itr.hasNext())){
@@ -49,10 +51,11 @@ public class SearchAction extends ActionSupport implements SessionAware{
 		System.out.println(sDTO.getMana());
 		System.out.println(sDTO.getImgurl());
 
-		session.put("cardname", sDTO.getCardname());
+		/*session.put("cardname", sDTO.getCardname());
 		session.put("mana", sDTO.getMana());
 		session.put("cardtype", sDTO.getCardtype());
 		session.put("imgurl", sDTO.getImgurl());
+		session.put("card_stock", sDTO.getCard_stock());*/
 		session.put("aryDTO", aryDTO);
 
 		ret = SUCCESS;
@@ -123,6 +126,28 @@ public class SearchAction extends ActionSupport implements SessionAware{
 	public void setSession(Map<String,Object> session){
 		this.session = session;
 	}
+
+
+	public int getCard_stock() {
+		return card_stock;
+	}
+
+
+	public void setCard_stock(int card_stock) {
+		this.card_stock = card_stock;
+	}
+
+
+	public int getSearchCheck() {
+		return SearchCheck;
+	}
+
+
+	public void setSearchCheck(int searchCheck) {
+		SearchCheck = searchCheck;
+	}
+
+
 
 
 }

@@ -10,10 +10,10 @@ import com.opensymphony.xwork2.ActionSupport;
 
 public class BuyItemAction extends ActionSupport implements SessionAware{
 
-	public String cardname;
+	private String cardname;
 	public int card_id;
-	public int buycount;
-	public int price;
+	private int buycount;
+	private int price;
 	private boolean buyflag;
 	public String message = "";
 
@@ -23,7 +23,7 @@ public class BuyItemAction extends ActionSupport implements SessionAware{
 	public String execute(){
 		String ret = SUCCESS;
 
-		session.put("card_id", card_id);
+		session.put("buycardname", cardname);
 		session.put("buycount", buycount);
 		session.put("price", price);
 		int intCount = Integer.parseInt(session.get("buycount").toString());
@@ -35,8 +35,10 @@ public class BuyItemAction extends ActionSupport implements SessionAware{
 
 		BuyItemDAO bDAO = new BuyItemDAO();
 		BuyItemDTO bDTO = bDAO.BuyAction(card_id, buycount);
+		buyflag = bDTO.buyflag;
 
-		if(bDTO.buyflag){
+
+		if(buyflag){
 			message = "購入完了しました。";
 		}else{
 			message = "在庫が足りず、購入できませんでした";
@@ -93,6 +95,7 @@ public class BuyItemAction extends ActionSupport implements SessionAware{
 
 
 
+
 	public boolean isBuyflag() {
 		return buyflag;
 	}
@@ -101,6 +104,12 @@ public class BuyItemAction extends ActionSupport implements SessionAware{
 
 	public void setBuyflag(boolean buyflag) {
 		this.buyflag = buyflag;
+	}
+
+
+
+	public String getMessage() {
+		return message;
 	}
 
 

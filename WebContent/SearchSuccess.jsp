@@ -24,6 +24,7 @@
 					在庫：<s:property value="card_stock"/>
 				</div><br>
 				<div class="textbox">
+				<s:if test="card_stock > 0">
 					<input type="hidden" value='<s:property value="cardname"/>' name="cardname">
 					<input type="hidden" value='<s:property value="card_id"/>' name="card_id">
 					<input type="hidden" value='<s:property value="price"/>' name="price">
@@ -35,6 +36,10 @@
 							<option value="5">5</option>
 					</select>
 					<input type="submit" value="購入">
+				</s:if>
+				<s:else>
+					在庫切れです。
+				</s:else>
 				</div><br>
 			</s:form>
 		</div>

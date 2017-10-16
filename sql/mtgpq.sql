@@ -16,6 +16,25 @@ price int,
 card_stock int
 );
 
+drop table if exists buycard;
+
+create table buycard(
+id int not null primary key auto_increment,
+cardname varchar(255),
+total_price int,
+total_count int,
+insert_date datetime
+);
+
+drop table if exists adminuser;
+
+create table adminuser(
+id int not null primary key ,
+user_id varchar(255),
+password varchar(255)
+);
+
+
 insert into carddata value
 (1,'Stalwart Aven','Withe',10,'Creature','cardimg/Stalwart Aven.png',50,20),
 (2,'Day_s Undoing','Blue',10,'Spell','cardimg/Day_s Undoing.png',1500,4),
@@ -25,12 +44,7 @@ insert into carddata value
 (6,'Thunderclap Wyvern','Multi',12,'Creature','cardimg/Thunderclap Wyvern.png',100,15),
 (7,'護法の宝珠','Non Color',8,'Support','',150,35);
 
-drop table if exists buycard;
 
-create table buycard(
-id int not null primary key auto_increment,
-cardname varchar(255),
-total_price int,
-total_count int,
-insert_date datetime
+insert into adminuser value(
+1,"taro","123"
 );

@@ -17,15 +17,26 @@ public class SearchDAO {
 	ArrayList<SearchDTO> aryDTO = new ArrayList<SearchDTO>();
 
 
-	public ArrayList<SearchDTO> Search(String cardname,int mana,String cardtype){
+	public ArrayList<SearchDTO> Search(String cardname,int mana,String cardtype,int SearchCheck){
 
 		PreparedStatement ps = null;
 		String sql = "SELECT * FROM carddata";
 		String tmp = "";
 		int count = 0;
 
+
+
 		if(!(cardname.equals(""))){
-			tmp = (" cardname = '"+ cardname + "'");
+			switch(SearchCheck){
+			case 2:
+				tmp = (" cardname like '"+ cardname + "%'");
+				break;
+			case 3:
+				tmp = (" cardname like '%"+ cardname + "%'");
+				break;
+			default :
+				tmp = (" cardname = '"+ cardname + "'");
+			}
 			count++;
 		}
 		if(mana > 0 ){
@@ -72,7 +83,7 @@ public class SearchDAO {
 
 		try{
 			con.close();
-			System.out.println("close");
+			System.out.println("close_sDAO");
 		}catch(SQLException e){
 			e.printStackTrace();
 		}

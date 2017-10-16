@@ -26,11 +26,6 @@ public class BuyItemDAO {
 
 
 			ResultSet rs =ps.executeQuery();
-//			rs.next();
-//			System.out.println(rs.getString("cardname"));
-//			System.out.println(rs.getString("card_stock"));
-//			System.out.println(rs.getString("price"));
-//			System.out.println(rs.getRow() );
 
 			if(rs.next()){
 				System.out.println("iftrue");
@@ -77,7 +72,7 @@ public class BuyItemDAO {
 
 		try{
 			con.close();
-			System.out.println("close");
+			System.out.println("close_biDAO");
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
