@@ -67,7 +67,6 @@ public class SearchDAO {
 
 			while(rs.next()){
 				SearchDTO sDTO = new SearchDTO();
-				sDTO.setCard_id(rs.getInt("card_id"));
 				sDTO.setCardname(rs.getString("cardname"));
 				sDTO.setMana(rs.getInt("mana"));
 				sDTO.setCardtype(rs.getString("cardtype"));

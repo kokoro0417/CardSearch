@@ -34,7 +34,7 @@ public class BuyItemAction extends ActionSupport implements SessionAware{
 		System.out.println(session.get("total_price")+"tp");
 
 		BuyItemDAO bDAO = new BuyItemDAO();
-		BuyItemDTO bDTO = bDAO.BuyAction(card_id, buycount);
+		BuyItemDTO bDTO = bDAO.BuyAction(cardname, buycount);
 		buyflag = bDTO.buyflag;
 
 

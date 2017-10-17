@@ -15,14 +15,14 @@ public class BuyItemDAO {
 	private BuyItemDTO bDTO = new BuyItemDTO();
 	private boolean sqlflag = false ;
 
-	public BuyItemDTO BuyAction(int card_id,int buycount){
+	public BuyItemDTO BuyAction(String cardname,int buycount){
 
-		String sql = "select * from carddata where card_id = ? ;";
+		String sql = "select * from carddata where cardname = ? ;";
 		System.out.println(sql);
 
 		try{
 			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setInt(1, card_id);
+			ps.setString(1, cardname);
 
 
 			ResultSet rs =ps.executeQuery();
@@ -52,11 +52,11 @@ public class BuyItemDAO {
 			int stock = bDTO.getCard_stock()-buycount;
 
 			try{
-				sql = "update carddata set card_stock = ?  where card_id = ?;";
+				sql = "update carddata set card_stock = ?  where cardname = ?;";
 				System.out.println(sql);
 				PreparedStatement ps = con.prepareStatement(sql);
 				ps.setInt(1, stock);
-				ps.setInt(2, card_id);
+				ps.setString(2, cardname);
 
 				boolean scesflag = ps.execute();
 

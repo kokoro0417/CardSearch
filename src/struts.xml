@@ -31,8 +31,17 @@
 		</action>
 
 		<action name="CardAddAction" class="com.internousdev.cs.action.CardAddAction" method="execute">
+			<result name="success">CAddConfirmation.jsp</result>
+			<result name="error">AdminPage.jsp</result>
+		</action>
+
+		<action name="CAddDoneAction" class="com.internousdev.cs.action.CAddDoneAction" method="execute">
 			<result name="success">AdminPage.jsp</result>
 			<result name="error">AdminPage.jsp</result>
+		</action>
+
+		<action name="CAddCansellAction" class="com.internousdev.cs.action.CAddCansellAction" method="execute">
+			<result name="success">AdminPage.jsp</result>
 		</action>
 
 	</package>
