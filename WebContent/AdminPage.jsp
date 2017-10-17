@@ -81,7 +81,7 @@
 	</form>
 	<br><br>
 
-	<s:form action="HomeAction">
+	<s:form action="LogoutAction">
 		<s:submit value="戻る"/>
 	</s:form>
 

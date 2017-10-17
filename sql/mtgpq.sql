@@ -28,11 +28,26 @@ insert_date datetime
 drop table if exists adminuser;
 
 create table adminuser(
-id int not null primary key ,
 user_id varchar(255),
 password varchar(255)
 );
 
+drop table if exists user_data;
+
+create table user_data(
+user_id varchar(255) not null primary key,
+password varchar(255)
+);
+
+drop table if exists buy_card_data;
+
+create table buy_card_data(
+user_id varchar(255) not null primary key,
+cardname varchar(255),
+total_price int,
+total_count int,
+insert_date datetime
+);
 
 insert into carddata value
 ('Stalwart Aven','Withe',10,'Creature','cardimg/Stalwart Aven.png',50,20),
@@ -45,5 +60,11 @@ insert into carddata value
 
 
 insert into adminuser value(
-1,"taro","123"
+"taro","123"
 );
+
+insert into user_data value
+("taro","123"),
+("jiro","456"),
+("hanako","789")
+;

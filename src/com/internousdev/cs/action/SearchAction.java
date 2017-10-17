@@ -56,7 +56,7 @@ public class SearchAction extends ActionSupport implements SessionAware{
 		session.put("cardtype", sDTO.getCardtype());
 		session.put("imgurl", sDTO.getImgurl());
 		session.put("card_stock", sDTO.getCard_stock());*/
-		session.put("aryDTO", aryDTO);
+		session.put("SearchResult", aryDTO);
 
 		ret = SUCCESS;
 

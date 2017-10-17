@@ -7,39 +7,85 @@
 	<constant name="struts.devMode" value="true"/>
 
 	<package name="com.internousdev.cs.action" extends="struts-default">
-		<action name="HomeAction" class="com.internousdev.cs.action.HomeAction" method="execute">
+
+		<!--////////////////ログイン・ログアウト///////////////-->
+		<!-- 一般/管理者ログイン -->
+		<action name="LoginAction" class="com.internousdev.cs.action.LoginAction" method="execute">
+			<result name="success">Home.jsp</result>
+			<result name="admin">AdminPage.jsp</result>
+			<result name="error">Error.jsp</result>
+		</action>
+
+		<!-- ログアウト -->
+		<action name="LogoutAction" class="com.internousdev.cs.action.LogoutAction" method="execute">
+			<result name="success">Login.jsp</result>
+		</action>
+
+
+		<!--////////////////マイページ機能///////////////-->
+		<!-- マイページ推移 -->
+		<action name="MypageAction" class="com.internousdev.cs.action.MypageAction" method="execute">
+			<result name="success">Mypage.jsp</result>
+			<result name="error">Searchhome.jsp</result>
+		</action>
+
+
+		<!--////////////////検索機能///////////////-->
+		<!-- 検索画面ホーム推移 -->
+		<action name="SearcHomeAction" class="com.internousdev.cs.action.SearcHomeAction" method="execute">
 			<result name="success">Searchhome.jsp</result>
 		</action>
+
+		<!-- 検索結果 -->
 		<action name="SearchAction" class="com.internousdev.cs.action.SearchAction" method="execute">
 			<result name="success">SearchSuccess.jsp</result>
 			<result name="error">Error.jsp</result>
 		</action>
 
+
+
+
+
+		<!--////////////////購入機能///////////////-->
+		<!-- 検索結果 -->
 		<action name="BuyItemAction" class="com.internousdev.cs.action.BuyItemAction" method="execute">
 			<result name="success">BuyItemSuccess.jsp</result>
 			<result name="error">Error.jsp</result>
 		</action>
 
-		<action name="AdminLoginAction" class="com.internousdev.cs.action.AdminLoginAction" method="execute">
-			<result name="success">AdminPage.jsp</result>
+		<!-- カート内観覧 -->
+		<action name="CartShowAction" class="com.internousdev.cs.action.CartShowAction" method="execute">
+			<result name="success">cart.jsp</result>
 			<result name="error">Error.jsp</result>
 		</action>
 
+		<!-- 商品カート追加 -->
+		<action name="CartAddAction" class="com.internousdev.cs.action.CartAddAction" method="execute">
+			<result name="success">SearchSuccess.jsp</result>
+		</action>
+
+
+		<!--////////////////商品補充機能///////////////-->
 		<action name="StockAction" class="com.internousdev.cs.action.StockAction" method="execute">
 			<result name="success">AdminPage.jsp</result>
 			<result name="error">AdminPage.jsp</result>
 		</action>
 
+
+		<!--////////////////商品追加機能///////////////-->
+		<!-- 商品追加確認 -->
 		<action name="CardAddAction" class="com.internousdev.cs.action.CardAddAction" method="execute">
 			<result name="success">CAddConfirmation.jsp</result>
 			<result name="error">AdminPage.jsp</result>
 		</action>
 
+		<!--商品追加確定 -->
 		<action name="CAddDoneAction" class="com.internousdev.cs.action.CAddDoneAction" method="execute">
 			<result name="success">AdminPage.jsp</result>
 			<result name="error">AdminPage.jsp</result>
 		</action>
 
+		<!-- 商品追加取消 -->
 		<action name="CAddCansellAction" class="com.internousdev.cs.action.CAddCansellAction" method="execute">
 			<result name="success">AdminPage.jsp</result>
 		</action>

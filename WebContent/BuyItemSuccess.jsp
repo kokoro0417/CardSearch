@@ -22,7 +22,7 @@
 <br><br>
 
 
-	<s:form action="HomeAction">
+	<s:form action="SearcHomeAction">
 		<s:submit value="戻る"/>
 	</s:form>
 </body>

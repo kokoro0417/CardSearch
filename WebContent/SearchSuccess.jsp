@@ -36,6 +36,7 @@
 							<option value="5">5</option>
 					</select>
 					<input type="submit" value="購入">
+
 				</s:if>
 				<s:else>
 					在庫切れです。
@@ -49,8 +50,12 @@
 	<br>
 	<br>
 	<br>
-	<s:form action="HomeAction">
+	<s:form action="SearcHomeAction">
 		<s:submit value="戻る"/>
+	</s:form>
+
+	<s:form action="CartAddAction">
+		<input type="submit" value="カートに入れる">
 	</s:form>
 
 

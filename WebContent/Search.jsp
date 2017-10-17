@@ -50,12 +50,18 @@
 	<br>
 	<br>
 
-<form action="AdminLoginAction" target="contents">
-管理者ID<br>
-<input type="text" name="user_id"><br>
-管理者PASS<br>
-<input type="password" name="password"><br>
-<input type="submit" value="管理者ログイン">
+<form action="CartShowAction" target="contents">
+	<input type="submit" value="カート内を見る">
+</form>
+	<br>
+
+<form action="MypageAction" target="contents">
+	<input type="submit" value="マイページ">
+</form>
+	<br>
+
+<form action="LogoutAction" target="_top">
+	<input type="submit" value="ログアウト">
 </form>
 
 <%-- <p><a href='<s:url action="AdminAction" />'>管理者ページ</a></p> --%>

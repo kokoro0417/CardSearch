@@ -1,16 +1,11 @@
 package com.internousdev.cs.dto;
 
-public class AdminLoginDTO {
+public class LoginActionDTO {
+	private String user_id;
+	private String password;
+	private boolean loginflag = false;
 
-	private int id =0;
-	private String user_id ="";
-	private String password ="";
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
+
 	public String getUser_id() {
 		return user_id;
 	}
@@ -23,6 +18,15 @@ public class AdminLoginDTO {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	public boolean isLoginflag() {
+		return loginflag;
+	}
+	public void setLoginflag(boolean loginflag) {
+		this.loginflag = loginflag;
+	}
+
+
+
 
 
 }
