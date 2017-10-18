@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>ホーム画面</title>
 </head>
- <frameset cols="30%,*">
+ <frameset cols="15%,*">
   <frame name="menu" src="Search.jsp">
   <frame name="contents" src="Searchhome.jsp">
  </frameset>

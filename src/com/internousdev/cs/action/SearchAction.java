@@ -21,14 +21,13 @@ public class SearchAction extends ActionSupport implements SessionAware{
 	public String message="";
 	public int card_stock;
 	public int SearchCheck = 1;
+	public boolean Searchflag = false;
 
 	public Map<String,Object> session;
 	public ArrayList<SearchDTO> aryDTO =new ArrayList<SearchDTO>();
 
 	SearchDTO sDTO = new SearchDTO();
 	SearchDAO sDAO = new SearchDAO();
-
-
 
 	public String execute(){
 		String ret = ERROR;
@@ -42,21 +41,9 @@ public class SearchAction extends ActionSupport implements SessionAware{
 			message = "";
 		}
 
-
-		System.out.println(cardname);
-		System.out.println(mana);
-		System.out.println(cardtype);
-
-		System.out.println(sDTO.getCardname());
-		System.out.println(sDTO.getMana());
-		System.out.println(sDTO.getImgurl());
-
-		/*session.put("cardname", sDTO.getCardname());
-		session.put("mana", sDTO.getMana());
-		session.put("cardtype", sDTO.getCardtype());
-		session.put("imgurl", sDTO.getImgurl());
-		session.put("card_stock", sDTO.getCard_stock());*/
-		session.put("SearchResult", aryDTO);
+		if(Searchflag){
+			session.put("SearchResult", aryDTO);
+		}
 
 		ret = SUCCESS;
 
@@ -145,6 +132,16 @@ public class SearchAction extends ActionSupport implements SessionAware{
 
 	public void setSearchCheck(int searchCheck) {
 		SearchCheck = searchCheck;
+	}
+
+
+	public boolean isSearchflag() {
+		return Searchflag;
+	}
+
+
+	public void setSearchflag(boolean searchflag) {
+		Searchflag = searchflag;
 	}
 
 

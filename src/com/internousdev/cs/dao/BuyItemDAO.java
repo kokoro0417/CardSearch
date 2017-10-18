@@ -10,12 +10,12 @@ import com.internousdev.cs.util.DBConnector;
 
 public class BuyItemDAO {
 
-	private DBConnector db = new DBConnector();
-	private Connection con = db.getConnection();
-	private BuyItemDTO bDTO = new BuyItemDTO();
 	private boolean sqlflag = false ;
 
 	public BuyItemDTO BuyAction(String cardname,int buycount){
+		DBConnector db = new DBConnector();
+		Connection con = db.getConnection();
+		BuyItemDTO bDTO = new BuyItemDTO();
 
 		String sql = "select * from carddata where cardname = ? ;";
 		System.out.println(sql);
@@ -53,16 +53,15 @@ public class BuyItemDAO {
 
 			try{
 				sql = "update carddata set card_stock = ?  where cardname = ?;";
-				System.out.println(sql);
+				System.out.println(sql+cardname);
 				PreparedStatement ps = con.prepareStatement(sql);
 				ps.setInt(1, stock);
 				ps.setString(2, cardname);
 
-				boolean scesflag = ps.execute();
+				ps.execute();
 
-				if(scesflag){
-					bDTO.setCard_stock(stock);
-				}
+				bDTO.setCard_stock(stock);
+				System.out.println("stock_update");
 
 			}catch(SQLException e){
 				e.printStackTrace();

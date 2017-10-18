@@ -1,31 +1,51 @@
 package com.internousdev.cs.action;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
 import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.internousdev.cs.dao.BuyItemDAO;
+import com.internousdev.cs.dao.BuyItemHistryDAO;
 import com.internousdev.cs.dto.BuyItemDTO;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class BuyItemAction extends ActionSupport implements SessionAware{
 
 	private String cardname;
-	public int card_id;
 	private int buycount;
 	private int price;
-	private boolean buyflag;
+	private boolean buyflag = false;
 	public String message = "";
+	private Date dateUtil = new Date();
 
 	public Map<String,Object> session;
+	public ArrayList<BuyItemDTO> CartArray = new ArrayList<BuyItemDTO>();
 
-
+	@SuppressWarnings("unchecked")
 	public String execute(){
 		String ret = SUCCESS;
 
-		session.put("buycardname", cardname);
-		session.put("buycount", buycount);
-		session.put("price", price);
+		if(session.get("cartin") != null){
+			buyflag = true;
+			CartArray = (ArrayList<BuyItemDTO>)session.get("cartin");
+
+			Iterator<BuyItemDTO> itr = CartArray.iterator();
+			BuyItemDAO bDAO = new BuyItemDAO();
+			BuyItemDTO tmpBIDTO = new BuyItemDTO();
+			BuyItemHistryDAO BIH_DAO = new BuyItemHistryDAO();
+			while (itr.hasNext()) {
+				tmpBIDTO = (BuyItemDTO) itr.next();
+				bDAO.BuyAction(tmpBIDTO.getCardname(), tmpBIDTO.getCount());
+				BIH_DAO.BuyHistry((String)session.get("now_user"), tmpBIDTO, dateUtil);
+
+			}
+
+		}
+
+/*
 		int intCount = Integer.parseInt(session.get("buycount").toString());
 		int intPrice = Integer.parseInt(session.get("price").toString());
 
@@ -35,13 +55,14 @@ public class BuyItemAction extends ActionSupport implements SessionAware{
 
 		BuyItemDAO bDAO = new BuyItemDAO();
 		BuyItemDTO bDTO = bDAO.BuyAction(cardname, buycount);
-		buyflag = bDTO.buyflag;
+		buyflag = bDTO.buyflag;*/
 
 
 		if(buyflag){
+			session.remove("cartin");
 			message = "購入完了しました。";
 		}else{
-			message = "在庫が足りず、購入できませんでした";
+			message = "カート内に商品がありません";
 		}
 
 		return ret;
@@ -69,17 +90,6 @@ public class BuyItemAction extends ActionSupport implements SessionAware{
 		this.session = session;
 	}
 
-
-
-	public int getCard_id() {
-		return card_id;
-	}
-
-
-
-	public void setCard_id(int card_id) {
-		this.card_id = card_id;
-	}
 
 
 

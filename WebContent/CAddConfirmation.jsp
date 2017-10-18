@@ -20,8 +20,8 @@
 				カード種：<s:property value="cardtype"/><br>
 				価格	：<s:property value="price"/>円<br>
 				在庫数	：<s:property value="card_stock"/><br>
-				<form action="CAddDoneAction"><input type="submit" value="OK"></form>　
-				<form action="CAddCansellAction"><input type="submit" value="キャンセル"></form>
+				<form action="CardAddDoneAction"><input type="submit" value="OK"></form>　
+				<form action="CardAddCansellAction"><input type="submit" value="キャンセル"></form>
 			</div><br>
 		</div>
 </body>

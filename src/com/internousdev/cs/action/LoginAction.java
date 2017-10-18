@@ -25,7 +25,7 @@ public class LoginAction extends ActionSupport implements SessionAware{
 			LoginActionDAO laDAO = new LoginActionDAO();
 
 			laDTO =laDAO.Login(user_type,user_id, password);
-			session.put("now_user", laDTO);
+			session.put("now_user", laDTO.getUser_id());
 
 			if(user_id.equals(laDTO.getUser_id()) && password.equals(laDTO.getPassword())){
 				if(user_type == 0){

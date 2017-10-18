@@ -8,6 +8,17 @@
 <title>マイページ画面ｓ</title>
 </head>
 <body>
+<s:property value="#session.now_user"/>さんのマイページ
+<br>
+<br>
+
+
+<form action="BuyHistryAction">
+	<input type="submit" value="購入履歴">
+</form>
+
+<br>
+<br>
 
 
 <form action="LogoutAction" target="_top">

@@ -29,6 +29,11 @@
 			<result name="error">Searchhome.jsp</result>
 		</action>
 
+		<!-- 購入履歴推移 -->
+		<action name="BuyHistryAction" class="com.internousdev.cs.action.BuyHistryAction" method="execute">
+			<result name="success">BuyHistry.jsp</result>
+		</action>
+
 
 		<!--////////////////検索機能///////////////-->
 		<!-- 検索画面ホーム推移 -->
@@ -65,6 +70,15 @@
 		</action>
 
 
+		<!--////////////////管理画面切替///////////////-->
+		<action name="AdminPageChengeAction" class="com.internousdev.cs.action.AdminPageChengeAction" method="execute">
+			<result name="Home">AdminPage.jsp</result>
+			<result name="Add">NewCardAdd.jsp</result>
+			<result name="Chenge">CardChange.jsp</result>
+			<result name="error">Error.jsp</result>
+		</action>
+
+
 		<!--////////////////商品補充機能///////////////-->
 		<action name="StockAction" class="com.internousdev.cs.action.StockAction" method="execute">
 			<result name="success">AdminPage.jsp</result>
@@ -80,13 +94,13 @@
 		</action>
 
 		<!--商品追加確定 -->
-		<action name="CAddDoneAction" class="com.internousdev.cs.action.CAddDoneAction" method="execute">
+		<action name="CardAddDoneAction" class="com.internousdev.cs.action.CardAddDoneAction" method="execute">
 			<result name="success">AdminPage.jsp</result>
 			<result name="error">AdminPage.jsp</result>
 		</action>
 
 		<!-- 商品追加取消 -->
-		<action name="CAddCansellAction" class="com.internousdev.cs.action.CAddCansellAction" method="execute">
+		<action name="CardAddCansellAction" class="com.internousdev.cs.action.CardAddCansellAction" method="execute">
 			<result name="success">AdminPage.jsp</result>
 		</action>
 

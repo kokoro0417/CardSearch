@@ -16,6 +16,24 @@
 			<input type="password" name="password"><br>
 			<input type="submit" value="会員ログイン">
 		</form>
+		<form action="LoginAction">
+			<input type="hidden" value=0 name="user_type">
+			<input type="hidden" value="taro" name="user_id">
+			<input type="hidden" value="123" name="password">
+			<input type="submit" value="taro">
+		</form>
+		<form action="LoginAction">
+			<input type="hidden" value=0 name="user_type">
+			<input type="hidden" value="jiro" name="user_id">
+			<input type="hidden" value="456" name="password">
+			<input type="submit" value="jiro">
+		</form>
+		<form action="LoginAction">
+			<input type="hidden" value=0 name="user_type">
+			<input type="hidden" value="hanako" name="user_id">
+			<input type="hidden" value="789" name="password">
+			<input type="submit" value="hanako">
+		</form>
 	<br>
 	<br>
 

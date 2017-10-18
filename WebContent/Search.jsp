@@ -44,6 +44,7 @@
 	</select>
 	<br>
 	<br>
+	<input type="hidden" value="true" name="searchflag">
 	<input type="submit" value="検索">
 
 </form>

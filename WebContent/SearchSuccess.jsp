@@ -16,7 +16,7 @@
 	<s:iterator value="aryDTO">
 		<br>
 		<div class="Sbox">
-			<s:form action="BuyItemAction">
+			<s:form action="CartAddAction">
 				<img  src='<s:property value="imgurl"/>'><br>
 				<div class="textbox">
 					<s:property value="cardname"/>|
@@ -36,7 +36,6 @@
 							<option value="5">5</option>
 					</select>
 					<input type="submit" value="購入">
-
 				</s:if>
 				<s:else>
 					在庫切れです。

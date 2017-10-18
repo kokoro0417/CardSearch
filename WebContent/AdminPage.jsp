@@ -79,6 +79,18 @@
 		</select><br>
 		<input type="submit" value="新規追加">
 	</form>
+		<br><br>
+
+	<s:form action="AdminPageChengeAction">
+		<input type="hidden" name="chengeflag" value="1">
+		<s:submit value="新商品追加"/>
+	</s:form>
+		<br><br>
+
+	<s:form action="AdminPageChengeAction">
+		<input type="hidden" name="chengeflag" value="2">
+		<s:submit value="情報変更"/>
+	</s:form>
 	<br><br>
 
 	<s:form action="LogoutAction">

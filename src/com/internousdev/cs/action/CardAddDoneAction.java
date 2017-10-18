@@ -8,7 +8,7 @@ import com.internousdev.cs.dao.CardAddDAO;
 import com.internousdev.cs.dto.CardAddDTO;
 import com.opensymphony.xwork2.ActionSupport;
 
-public class CAddDoneAction extends ActionSupport implements SessionAware{
+public class CardAddDoneAction extends ActionSupport implements SessionAware{
 
 	public Map<String,Object> session;
 	public String message="";

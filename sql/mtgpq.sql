@@ -42,11 +42,11 @@ password varchar(255)
 drop table if exists buy_card_data;
 
 create table buy_card_data(
-user_id varchar(255) not null primary key,
+user_id varchar(255),
 cardname varchar(255),
 total_price int,
 total_count int,
-insert_date datetime
+datetime datetime
 );
 
 insert into carddata value

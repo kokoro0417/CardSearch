@@ -9,6 +9,7 @@ public class BuyItemDTO {
 	private int card_stock;
 	private int total_price;
 	private int total_count;
+	private String Datetime;
 
 	public boolean buyflag = false;
 
@@ -53,6 +54,12 @@ public class BuyItemDTO {
 	}
 	public void setBuyflag(boolean buyflag) {
 		this.buyflag = buyflag;
+	}
+	public String getDatetime() {
+		return Datetime;
+	}
+	public void setDatetime(String datetime) {
+		Datetime = datetime;
 	}
 
 

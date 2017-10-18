@@ -1,37 +1,44 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@taglib prefix="s" uri="/struts-tags" %>
+ <%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>カート観覧画面</title>
-<link rel="stylesheet" href="Style.css">
+<title>購入履歴</title>
 </head>
 <body>
-<form action="BuyItemAction">
+
+<s:if test="BuyHistryFlag">
+	<br>
+	<br>
 	<table>
-			<tr>
+		<tr>
 			<td>商品名</td>
 			<td>個数</td>
-			<td>金額</td>
 			<td>合計金額</td>
+			<td>購入日時</td>
 		</tr>
-		<s:iterator value="CartArray">
+		<s:iterator value="BuyHistry">
 			<tr>
 				<td><s:property value="cardname"/></td>
-				<td><s:property value="count"/></td>
-				<td><s:property value="price"/></td>
+				<td><s:property value="total_count"/></td>
 				<td><s:property value="total_price"/></td>
+				<td><s:property value="datetime"/></td>
 			</tr>
-			</s:iterator>
+		</s:iterator>
+
 	</table>
-	<input type="submit" value="購入">
-</form>
 
+</s:if>
+<s:else>
+	購入履歴がありません。
+</s:else>
+<br>
+<br>
 
-<form action="SearcHomeAction" target="_self">
-	<input type="submit" value="戻る">
+<form action="MypageAction">
+	<input type="submit" value="マイページ">
 </form>
 
 </body>
