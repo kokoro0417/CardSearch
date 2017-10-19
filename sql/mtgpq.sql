@@ -56,7 +56,7 @@ insert into carddata value
 ('Avaricious Dragon','Red',15,'Creature','cardimg/Avaricious Dragon.png',400,8),
 ('Gaea_s Revenge','Green',16,'Creature','cardimg/Gaea_s Revenge.png',2000,2),
 ('Thunderclap Wyvern','Multi',12,'Creature','cardimg/Thunderclap Wyvern.png',100,15),
-('護法の宝珠','Non Color',8,'Support','',150,35);
+('護法の宝珠','Non Color',8,'Support','cardimg/護法の宝珠.png',150,35);
 
 
 insert into adminuser value(

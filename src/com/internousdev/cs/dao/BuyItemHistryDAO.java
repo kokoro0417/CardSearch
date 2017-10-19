@@ -63,7 +63,6 @@ public class BuyItemHistryDAO {
 			ResultSet rs = ps.executeQuery();
 
 			while(rs.next()){
-				System.out.println("rsnext");
 				BuyItemDTO tmpBIDTO = new BuyItemDTO();
 				tmpBIDTO.setCardname(rs.getString("cardname"));
 				tmpBIDTO.setTotal_count(rs.getInt("total_count"));

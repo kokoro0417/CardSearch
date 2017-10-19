@@ -45,5 +45,11 @@
 			<input type="password" name="password"><br>
 			<input type="submit" value="管理者ログイン">
 		</form>
+		<form action="LoginAction">
+			<input type="hidden" value=1 name="user_type">
+			<input type="hidden" value="taro" name="user_id">
+			<input type="hidden" value="123" name="password">
+			<input type="submit" value="管理者taro">
+		</form>
 	</body>
 </html>

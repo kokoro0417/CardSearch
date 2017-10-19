@@ -39,6 +39,7 @@ public class SearchAction extends ActionSupport implements SessionAware{
 			message = "検索結果がありません";
 		}else{
 			message = "";
+
 		}
 
 		if(Searchflag){
