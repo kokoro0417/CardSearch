@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import com.internousdev.cs.dto.SearchDTO;
+import com.internousdev.cs.dto.CardDataDTO;
 import com.internousdev.cs.util.DBConnector;
 
 public class StockActionDAO {
@@ -13,9 +13,9 @@ public class StockActionDAO {
 	private int count;
 	private int card_stock;
 
-	SearchDTO sDTO = new SearchDTO();
+	CardDataDTO cdDTO = new CardDataDTO();
 
-	public SearchDTO Stock(String cardname, int card_stock){
+	public CardDataDTO Stock(String cardname, int card_stock){
 
 		DBConnector db =new DBConnector();
 		Connection con = db.getConnection();
@@ -28,11 +28,10 @@ public class StockActionDAO {
 			ps.setInt(1, card_stock);
 			ps.setString(2, cardname);
 
-			boolean scesflg = ps.execute();
+			ps.execute();
 
-			if(scesflg){
-				sDTO.setCardname(cardname);
-			}
+			cdDTO.setCardname(cardname);
+			System.out.println("UPDATE");
 
 		}catch(SQLException e){
 			e.printStackTrace();
@@ -45,7 +44,7 @@ public class StockActionDAO {
 			e.printStackTrace();
 		}
 
-		return sDTO;
+		return cdDTO;
 	}
 
 	public String getCardname() {

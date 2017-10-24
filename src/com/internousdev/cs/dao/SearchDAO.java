@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import com.internousdev.cs.dto.SearchDTO;
+import com.internousdev.cs.dto.CardDataDTO;
 import com.internousdev.cs.util.DBConnector;
 
 public class SearchDAO {
@@ -14,10 +14,10 @@ public class SearchDAO {
 	private DBConnector db = new DBConnector();
 	private Connection con = db.getConnection();
 	//private SearchDTO sDTO = new SearchDTO();
-	ArrayList<SearchDTO> aryDTO = new ArrayList<SearchDTO>();
 
+	public ArrayList<CardDataDTO> Search(String cardname,int mana,String cardtype,int SearchCheck){
 
-	public ArrayList<SearchDTO> Search(String cardname,int mana,String cardtype,int SearchCheck){
+		ArrayList<CardDataDTO> aryDTO = new ArrayList<CardDataDTO>();
 
 		PreparedStatement ps = null;
 		String sql = "SELECT * FROM carddata";
@@ -66,14 +66,9 @@ public class SearchDAO {
 			ResultSet rs = ps.executeQuery();
 
 			while(rs.next()){
-				SearchDTO sDTO = new SearchDTO();
-				sDTO.setCardname(rs.getString("cardname"));
-				sDTO.setMana(rs.getInt("mana"));
-				sDTO.setCardtype(rs.getString("cardtype"));
-				sDTO.setImgurl(rs.getString("imgurl"));
-				sDTO.setPrice(rs.getInt("price"));
-				sDTO.setCard_stock(rs.getInt("card_stock"));
-				aryDTO.add(sDTO);
+				CardDataDTO cdDTO = new CardDataDTO();
+				cdDTO.SearchSet(rs.getString("cardname"), rs.getInt("mana"), rs.getString("color"),rs.getString("cardtype"), rs.getString("imgurl"), rs.getInt("price"), rs.getInt("card_stock"));
+				aryDTO.add(cdDTO);
 			}
 
 		}catch(SQLException e){

@@ -1,23 +1,41 @@
 package com.internousdev.cs.dto;
 
 public class CardDataDTO {
-	private String cardname ="";
-	private String chenge_cardname ="";
-	private int mana = 0;
-	private String color ="";
-	private String cardtype = "";
-	private int price = 0;
-	private int card_stock = 0;
+	private String cardname ="";//カード名
+	private String chenge_cardname ="";//カード変更名
+	private int mana = 0;//マナ
+	private String color ="";//色
+	private String cardtype = "";//カードタイプ
+	private int price = 0;//金額
+	private int card_stock = 0;//在庫数
+	private int add_stock = 0;//入荷数
+	private String imgurl;//画像URL
+	private int cart_count = 0;//カート内スタック個数
+	private int total_count = 0;//合計購入個数
+	private int total_price = 0;//合計金額
+	private String Datetime;//購入日時
+	public boolean buyflag = false;//カートアクション用フラグ
+	public boolean nameflag = false;//カード名チェック用フラグ
 	private String[] mesList = {"","カード名：","変更名：","マナ：","色：","カード種：","金額：","入荷数"};
 
-	public void AllSet(String cardname,String chenge_cardname,int mana,String color,String cardtype,int price,int card_stock){
+	public void SearchSet(String cardname,int mana,String color,String cardtype,String imgurl,int price,int card_stock){
+		setCardname(cardname);
+		setMana(mana);
+		setColor(color);
+		setCardtype(cardtype);
+		setImgurl(imgurl);
+		setPrice(price);
+		setCard_stock(card_stock);
+	}
+
+	public void ChengeSet(String cardname,String chenge_cardname,int mana,String color,String cardtype,int price,int add_stock){
 		setCardname(cardname);
 		setChenge_cardname(chenge_cardname);
 		setColor(color);
 		setMana(mana);
 		setCardtype(cardtype);
 		setPrice(price);
-		setCard_stock(card_stock);
+		setAdd_stock(add_stock);
 	}
 
 
@@ -64,6 +82,78 @@ public class CardDataDTO {
 		this.card_stock = card_stock;
 	}
 
+	public int getAdd_stock() {
+		return add_stock;
+	}
+
+
+	public void setAdd_stock(int add_stock) {
+		this.add_stock = add_stock;
+	}
+
+
+	public String getImgurl() {
+		return imgurl;
+	}
+
+
+	public void setImgurl(String imgurl) {
+		this.imgurl = imgurl;
+	}
+
+
+	public int getCart_count() {
+		return cart_count;
+	}
+
+
+	public void setCart_count(int cart_count) {
+		this.cart_count = cart_count;
+	}
+
+
+	public int getTotal_price() {
+		return total_price;
+	}
+
+
+	public void setTotal_price(int total_price) {
+		this.total_price = total_price;
+	}
+
+
+	public String getDatetime() {
+		return Datetime;
+	}
+
+
+	public void setDatetime(String datetime) {
+		Datetime = datetime;
+	}
+
+
+	public boolean isBuyflag() {
+		return buyflag;
+	}
+
+
+	public void setBuyflag(boolean buyflag) {
+		this.buyflag = buyflag;
+	}
+
+
+	public boolean isNameflag() {
+		return nameflag;
+	}
+
+	public void setNameflag(boolean nameflag) {
+		this.nameflag = nameflag;
+	}
+
+	public void setMesList(String[] mesList) {
+		this.mesList = mesList;
+	}
+
 
 	public String getMesList() {
 		return mesList[0];
@@ -83,6 +173,14 @@ public class CardDataDTO {
 			}
 		}
 		return mesList[0];
+	}
+
+	public int getTotal_count() {
+		return total_count;
+	}
+
+	public void setTotal_count(int total_count) {
+		this.total_count = total_count;
 	}
 
 

@@ -5,13 +5,13 @@ import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
 
-import com.internousdev.cs.dto.BuyItemDTO;
+import com.internousdev.cs.dto.CardDataDTO;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class CartShowAction extends ActionSupport implements SessionAware{
 
 	public Map<String, Object> session;
-	public ArrayList<BuyItemDTO> CartArray = new ArrayList<BuyItemDTO>();
+	public ArrayList<CardDataDTO> CartArray = new ArrayList<CardDataDTO>();
 
 	private String cardname;
 	private int buycount;
@@ -21,7 +21,7 @@ public class CartShowAction extends ActionSupport implements SessionAware{
 	@SuppressWarnings("unchecked")
 	public String execute(){
 		if(session.get("cartin") != null){//既にカートに何か入っていたら起動
-			CartArray = (ArrayList<BuyItemDTO>)session.get("cartin");
+			CartArray = (ArrayList<CardDataDTO>)session.get("cartin");
 		}
 		return SUCCESS;
 	}

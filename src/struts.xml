@@ -12,7 +12,7 @@
 		<!-- 一般/管理者ログイン -->
 		<action name="LoginAction" class="com.internousdev.cs.action.LoginAction" method="execute">
 			<result name="success">Home.jsp</result>
-			<result name="admin">AdminPage.jsp</result>
+			<result name="admin">MultiChenge.jsp</result>
 			<result name="error">Error.jsp</result>
 		</action>
 
@@ -37,7 +37,7 @@
 
 		<!--////////////////検索機能///////////////-->
 		<!-- 検索画面ホーム推移 -->
-		<action name="SearcHomeAction" class="com.internousdev.cs.action.SearcHomeAction" method="execute">
+		<action name="SearcHomeAction" class="com.internousdev.cs.action.SuccessReturn" method="execute">
 			<result name="success">Searchhome.jsp</result>
 		</action>
 
@@ -73,42 +73,72 @@
 
 		<!--////////////////マルチ変更機能///////////////-->
 		<action name="MultiChengeAction" class="com.internousdev.cs.action.MultiChengeAction" method="execute">
-			<result name="success">CardChange.jsp</result>
+			<result name="stock">StockConfirmation.jsp</result>
+			<result name="chenge">ChengeConfirmation.jsp</result>
+			<result name="ins">InsertConfirmation.jsp</result>
+			<result name="del">DeleteConfirmation.jsp</result>
+			<result name="error">MultiChenge.jsp</result>
 		</action>
 
 
 		<!--////////////////管理画面切替///////////////-->
-		<action name="AdminPageChengeAction" class="com.internousdev.cs.action.AdminPageChengeAction" method="execute">
-			<result name="Home">AdminPage.jsp</result>
-			<result name="Add">NewCardAdd.jsp</result>
-			<result name="Chenge">CardChange.jsp</result>
-			<result name="error">Error.jsp</result>
-		</action>
+<!-- 		<action name="AdminPageChengeAction" class="com.internousdev.cs.action.AdminPageChengeAction" method="execute">
+			<result name="success">MultiChenge.jsp</result>
+		</action> -->
 
 
 		<!--////////////////商品補充機能///////////////-->
-		<action name="StockAction" class="com.internousdev.cs.action.StockAction" method="execute">
-			<result name="success">CardChange.jsp</result>
-			<result name="error">CardChange.jsp</result>
+		<action name="StockAction" class="com.internousdev.cs.action.StockAction" method="StockIn">
+			<result name="success">MultiChenge.jsp</result>
+			<result name="error">MultiChenge.jsp</result>
+		</action>
+
+		<action name="StockCansell" class="com.internousdev.cs.action.StockAction" method="StockCansell">
+			<result name="success">MultiChenge.jsp</result>
+			<result name="error">MultiChenge.jsp</result>
+		</action>
+
+		<!--////////////////機能テスト///////////////-->
+		<action name="TestAction" class="com.internousdev.cs.action.TestAction" method="execute">
+			<result name="success">Login.jsp</result>
+			<result name="error">Login.jsp</result>
 		</action>
 
 
 		<!--////////////////商品追加機能///////////////-->
 		<!-- 商品追加確認 -->
-		<action name="CardAddAction" class="com.internousdev.cs.action.CardAddAction" method="execute">
-			<result name="success">CAddConfirmation.jsp</result>
-			<result name="error">NewCardAdd.jsp</result>
-		</action>
-
-		<!--商品追加確定 -->
-		<action name="CardAddDoneAction" class="com.internousdev.cs.action.CardAddDoneAction" method="execute">
-			<result name="success">NewCardAdd.jsp</result>
-			<result name="error">NewCardAdd.jsp</result>
+		<action name="InsertAction" class="com.internousdev.cs.action.InsertAction" method="Insert">
+			<result name="success">MultiChenge.jsp</result>
+			<result name="error">MultiChenge.jsp</result>
 		</action>
 
 		<!-- 商品追加取消 -->
-		<action name="CardAddCansellAction" class="com.internousdev.cs.action.CardAddCansellAction" method="execute">
-			<result name="success">NewCardAdd.jsp</result>
+		<action name="InsertCansell" class="com.internousdev.cs.action.InsertAction" method="InsertCansell">
+			<result name="success">MultiChenge.jsp</result>
+		</action>
+
+		<!--////////////////商品削除機能///////////////-->
+		<!-- 商品削除確認 -->
+		<action name="DeleteAction" class="com.internousdev.cs.action.DeleteAction" method="Delete">
+			<result name="success">MultiChenge.jsp</result>
+			<result name="error">MultiChenge.jsp</result>
+		</action>
+
+		<!-- 商品削除取消 -->
+		<action name="DeleteCansell" class="com.internousdev.cs.action.DeleteAction" method="DeleteCansell">
+			<result name="success">MultiChenge.jsp</result>
+		</action>
+
+		<!--////////////////商品情報変更機能///////////////-->
+		<!-- 情報変更確認 -->
+		<action name="ChengeAction" class="com.internousdev.cs.action.ChengeAction" method="Chenge">
+			<result name="success">MultiChenge.jsp</result>
+			<result name="error">MultiChenge.jsp</result>
+		</action>
+
+		<!-- 情報変更取消 -->
+		<action name="ChengeCansell" class="com.internousdev.cs.action.ChengeAction" method="ChengeCansell">
+			<result name="success">MultiChenge.jsp</result>
 		</action>
 
 	</package>

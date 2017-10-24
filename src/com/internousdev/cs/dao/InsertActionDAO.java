@@ -4,14 +4,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import com.internousdev.cs.dto.CardAddDTO;
+import com.internousdev.cs.dto.CardDataDTO;
 import com.internousdev.cs.util.DBConnector;
 import com.opensymphony.xwork2.ActionSupport;
 
-public class CardAddDAO extends ActionSupport{
+public class InsertActionDAO extends ActionSupport{
 
 
-	public String AddCard(CardAddDTO caDTO){
+	public String InsertCard(CardDataDTO InsertCardDTO){
 		String ret = ERROR;
 		DBConnector db = new DBConnector();
 		Connection con = db.getConnection();
@@ -21,14 +21,14 @@ public class CardAddDAO extends ActionSupport{
 			System.out.println(sql);
 
 			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setString(1, caDTO.getCardname());
-			ps.setString(2, caDTO.getColor());
-			ps.setInt(3, caDTO.getMana());
-			ps.setString(4, caDTO.getCardtype());
-			String tmp = "cardimg/"+caDTO.getCardname()+".png";
+			ps.setString(1, InsertCardDTO.getChenge_cardname());
+			ps.setString(2, InsertCardDTO.getColor());
+			ps.setInt(3, InsertCardDTO.getMana());
+			ps.setString(4, InsertCardDTO.getCardtype());
+			String tmp = "cardimg/"+InsertCardDTO.getChenge_cardname()+".png";
 			ps.setString(5, tmp);
-			ps.setInt(6, caDTO.getPrice());
-			ps.setInt(7, caDTO.getCard_stock());
+			ps.setInt(6, InsertCardDTO.getPrice());
+			ps.setInt(7, InsertCardDTO.getAdd_stock());
 
 			ps.execute();
 

@@ -7,14 +7,14 @@ import java.util.Map;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.internousdev.cs.dao.BuyItemHistryDAO;
-import com.internousdev.cs.dto.BuyItemDTO;
+import com.internousdev.cs.dto.CardDataDTO;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class BuyHistryAction extends ActionSupport implements SessionAware{
 
 	public Map<String,Object> session;
 	public boolean BuyHistryFlag = false;
-	public ArrayList<BuyItemDTO> BuyHistry = new ArrayList<BuyItemDTO>();
+	public ArrayList<CardDataDTO> BuyHistry = new ArrayList<CardDataDTO>();
 
 	public String execute(){
 		BuyItemHistryDAO bihDAO = new BuyItemHistryDAO();
@@ -22,7 +22,7 @@ public class BuyHistryAction extends ActionSupport implements SessionAware{
 
 		BuyHistry = bihDAO.SearchHistry(user_id);
 
-		Iterator<BuyItemDTO> itr = BuyHistry.iterator();
+		Iterator<CardDataDTO> itr = BuyHistry.iterator();
 		if(itr.hasNext()) {
 			BuyHistryFlag = true;
 		}

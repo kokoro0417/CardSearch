@@ -5,14 +5,14 @@ import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
 
+import com.internousdev.cs.dao.SearchDAO;
 import com.internousdev.cs.dto.CardDataDTO;
-import com.internousdev.cs.dto.SearchDTO;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class MultiChengeAction extends ActionSupport implements SessionAware{
 
 	public Map<String,Object> session;
-	public ArrayList<SearchDTO> aryDTO = new ArrayList<SearchDTO>();
+	public ArrayList<CardDataDTO> aryDTO = new ArrayList<CardDataDTO>();
 
 	private String cardname ="";
 	private String chenge_cardname ="";
@@ -20,100 +20,101 @@ public class MultiChengeAction extends ActionSupport implements SessionAware{
 	private String color ="";
 	private String cardtype = "";
 	private int price = 0;
-	private int card_stock = 0;
+	private int add_stock = 0;
 	private int chenge_type = 0;
 	public String message="";
+	public boolean NameFlag = false;
+	private boolean SearchFlag = false;
+	private boolean ChengeFlag = false;
 
 	@SuppressWarnings("unchecked")
 	public String execute(){
 
-		CardDataDTO carddataDTO = new CardDataDTO();
-		carddataDTO.AllSet(cardname, chenge_cardname, mana, color, cardtype, price, card_stock);
+		CardDataDTO ChengeDataDTO = new CardDataDTO();
+		CardDataDTO SearchCardDataDTO = new CardDataDTO();
+		ChengeDataDTO.ChengeSet(cardname, chenge_cardname, mana, color, cardtype, price, add_stock);
+
+		SearchDAO sDAO = new SearchDAO();
+		ArrayList<CardDataDTO> aryDTO = new ArrayList<CardDataDTO>();
+		aryDTO = sDAO.Search(cardname, 0, "", 0);
+
+		if(!(aryDTO.isEmpty())){
+			SearchCardDataDTO = aryDTO.get(0);
+			SearchFlag = true;
+		}
+
+		if(!(chenge_cardname.isEmpty())){
+			aryDTO = sDAO.Search(chenge_cardname, 0, "", 0);
+
+			if(aryDTO.isEmpty()){
+				ChengeFlag = true;
+			}
+		}
 
 		//----必須項目の確認----
-		int datacheck[] = data_check(carddataDTO,chenge_type);
-		carddataDTO.mesconp(datacheck);
+/*		int datacheck[] = data_check(ChengeDataDTO,chenge_type);
+		ChengeDataDTO.mesconp(datacheck);*/
 		//--------
+
+		String ret = ERROR;
 
 		String tmpmes = "";
 
 		switch(chenge_type){
 		case 1:
 			tmpmes="変更";
+			ret = "chenge";
+			if(cardname.equals("")){
+				message = "カード名が未入力です。<br>";
+				SearchFlag = false;
+			}
+			if(chenge_cardname.isEmpty()){
+				chenge_cardname = cardname;
+			}
 			break;
 		case 2:
 			tmpmes="追加";
+			ret = "ins";
+			if(chenge_cardname.equals("")){
+				message ="追加カード名が未入力です。<br>";
+				//ChengeFlag = false;
+			}else if(!(ChengeFlag)){
+				message = "同名カードが既に登録されています。<br>";
+			}
 			break;
 		case 3:
 			tmpmes="削除";
+			ret = "del";
+			if(cardname.equals("") ){
+				message = "カード名が未入力です。<br>";
+				SearchFlag = false;
+			}
 			break;
 		default:
 			tmpmes="入荷";
+			ret = "stock";
+			if(cardname.equals("") ){
+				message = "カード名が未入力です。<br>";
+				SearchFlag = false;
+			}
+			if(add_stock == 0){
+				message = message + "入荷数が未入力です。<br>";
+				SearchFlag = false;
+			}
 			break;
 
+		}
+
+		if(message.length()>0){
+			message = message + "キャンセルを押してください。";
 		}
 		System.out.println(chenge_type+tmpmes);
-		System.out.println(carddataDTO.getMesList());
 
+		session.put("ChengeData", ChengeDataDTO);
+		session.put("SearchCardData", SearchCardDataDTO);
+		aryDTO = (ArrayList<CardDataDTO>)session.get("SearchResult");
 
-		aryDTO = (ArrayList<SearchDTO>)session.get("SearchResult");
-
-		return SUCCESS;
-	}
-
-	private int[] data_check(CardDataDTO carddataDTO,int selecttype){
-		int check[] = {0,0,0,0,0,0,0,0};
-
-		//未入力項目の洗い出し
-		if(carddataDTO.getCardname().equals("")){//カード名
-			check[1] = 1;
-			check[0]++;
-		}
-		if(carddataDTO.getChenge_cardname().equals("")){//変更名
-			check[2] = 1;
-			check[0]++;
-		}
-		if(carddataDTO.getMana() == 0){//マナ
-			check[3] = 1;
-			check[0]++;
-		}
-		if(carddataDTO.getColor().equals("")){//色
-			check[4] = 1;
-			check[0]++;
-		}
-		if(carddataDTO.getCardtype().equals("")){//カード種
-			check[5] = 1;
-			check[0]++;
-		}
-		if(carddataDTO.getPrice()==0){//金額
-			check[6] = 1;
-			check[0]++;
-		}
-		if(carddataDTO.getCard_stock()==0){//入荷数
-			check[7] = 1;
-			check[0]++;
-		}
-
-		switch(selecttype){//必須項目のフィルタ
-		case 3:
-			check[7] = 0;
-		default:
-		case 0:
-			check[2] = 0;
-			check[3] = 0;
-			check[4] = 0;
-			check[5] = 0;
-			check[6] = 0;
-		break;
-		case 2:
-			check[1] = 0;
-			break;
-		case 1:
-			check[7] = 0;
-			break;
-		}
-
-		return check;
+		return ret;
 	}
 
 	public void setSession(Map<String, Object> session) {
@@ -168,12 +169,12 @@ public class MultiChengeAction extends ActionSupport implements SessionAware{
 		this.price = price;
 	}
 
-	public int getCard_stock() {
-		return card_stock;
+	public int getAdd_stock() {
+		return add_stock;
 	}
 
-	public void setCard_stock(int card_stock) {
-		this.card_stock = card_stock;
+	public void setAdd_stock(int add_stock) {
+		this.add_stock = add_stock;
 	}
 
 	public int getChenge_type() {
@@ -182,6 +183,22 @@ public class MultiChengeAction extends ActionSupport implements SessionAware{
 
 	public void setChenge_type(int chenge_type) {
 		this.chenge_type = chenge_type;
+	}
+
+	public boolean isSearchFlag() {
+		return SearchFlag;
+	}
+
+	public void setSearchFlag(boolean searchFlag) {
+		SearchFlag = searchFlag;
+	}
+
+	public boolean isChengeFlag() {
+		return ChengeFlag;
+	}
+
+	public void setChengeFlag(boolean chengeFlag) {
+		ChengeFlag = chengeFlag;
 	}
 
 

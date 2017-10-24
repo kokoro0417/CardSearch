@@ -7,9 +7,9 @@ drop table if exists carddata;
 
 create table carddata(
 cardname varchar(255) not null primary key,
-color enum('Withe','Blue','Black','Red','Green','Multi','Non Color'),
+color enum('Withe','Blue','Black','Red','Green','Multi','Non Color','_'),
 mana int(10),
-cardtype enum('Creature','Spell','Support'),
+cardtype enum('Creature','Spell','Support','_'),
 imgurl varchar(255),
 price int,
 card_stock int

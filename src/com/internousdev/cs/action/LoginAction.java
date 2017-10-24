@@ -1,10 +1,13 @@
 package com.internousdev.cs.action;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.internousdev.cs.dao.LoginActionDAO;
+import com.internousdev.cs.dao.SearchDAO;
+import com.internousdev.cs.dto.CardDataDTO;
 import com.internousdev.cs.dto.LoginActionDTO;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -16,6 +19,7 @@ public class LoginAction extends ActionSupport implements SessionAware{
 	public String message="";
 
 	public Map<String,Object> session;
+	public ArrayList<CardDataDTO> aryDTO = new ArrayList<CardDataDTO>();
 
 	public String execute(){
 		String ret = ERROR;
@@ -25,13 +29,16 @@ public class LoginAction extends ActionSupport implements SessionAware{
 			LoginActionDAO laDAO = new LoginActionDAO();
 
 			laDTO =laDAO.Login(user_type,user_id, password);
-			session.put("now_user", laDTO.getUser_id());
 
 			if(user_id.equals(laDTO.getUser_id()) && password.equals(laDTO.getPassword())){
+				session.put("now_user", laDTO.getUser_id());
 				if(user_type == 0){
 					ret = SUCCESS;
 				}else{
 					ret = "admin";
+					SearchDAO sDAO = new SearchDAO();
+					aryDTO = sDAO.Search("", 0, "", 0);
+					session.put("SearchResult", aryDTO);
 				}
 			}
 		}

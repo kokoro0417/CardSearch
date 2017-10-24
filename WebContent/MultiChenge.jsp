@@ -9,7 +9,7 @@
 </head>
 <body>
 	<s:if test="message != ''">
-		<s:property value="message"/><br><br>
+		<s:property value="message" escape="false" /><br><br>
 	</s:if>
 	<form action="MultiChengeAction">
 		カード名:(在庫追加/情報変更/商品削除の場合必須項目)<br>
@@ -50,7 +50,7 @@
 		金額<br>
 		<input type="text" name="price" value=0><br>
 		入荷数<br>
-		<select name="card_stock">
+		<select name="add_stock">
 			<option value="0" label="0" selected>
 			<option value="1" label="1">
 			<option value="2" label="2">
@@ -67,14 +67,9 @@
 	</form>
 	<br><br>
 
-	<s:form action="AdminPageChengeAction">
-		<input type="hidden" name="chengeflag" value="1">
-		<s:submit value="新商品追加ページへ"/>
-	</s:form>
-		<br><br>
 
-	<s:form action="AdminPageChengeAction">
-		<s:submit value="戻る"/>
+	<s:form action="LogoutAction">
+		<s:submit value="ログアウト"/>
 	</s:form>
 
 </body>

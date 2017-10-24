@@ -51,5 +51,23 @@
 			<input type="hidden" value="123" name="password">
 			<input type="submit" value="管理者taro">
 		</form>
+
+
+	<br>
+	<br>
+		<form action="TestAction">
+			<input type="text" name="Table" value="carddata"><br>
+			<input type="text" name="InsCol1" value="cardname">
+			<input type="text" name="InsCol2" value="color">
+			<input type="text" name="InsCol3" value="cardtype"><br>
+			<select name="ElCount">
+			<option value="1" label="1" selected>
+			<option value="2" label="2">
+			<option value="3" label="3">
+			<option value="4" label="4">
+			<option value="5" label="5">
+		</select><br>
+			<input type="submit" value="ActionTest">
+		</form>
 	</body>
 </html>

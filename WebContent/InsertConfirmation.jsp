@@ -9,19 +9,21 @@
 <link rel="stylesheet" href="Style.css">
 </head>
 <body>
-	<s:if test="message != ''">
-		<h3><s:property value="message"/></h3>
-	</s:if>
 <div class="Sbox">
 			<div class="textbox">
-				カード名：<s:property value="cardname"/><br>
+				<s:if test="ChengeFlag">
+				カード名：<s:property value="chenge_cardname"/><br>
 				色		：<s:property value="color"/><br>
 				マナ	：<s:property value="mana"/><br>
 				カード種：<s:property value="cardtype"/><br>
 				価格	：<s:property value="price"/>円<br>
-				在庫数	：<s:property value="card_stock"/><br>
-				<form action="CardAddDoneAction"><input type="submit" value="OK"></form>　
-				<form action="CardAddCansellAction"><input type="submit" value="キャンセル"></form>
+				入荷数	：<s:property value="add_stock"/><br>
+				<form action="InsertAction"><input type="hidden" value="<s:property value='SearchFlag'/>"><input type="submit" value="OK"></form>　
+				</s:if>
+				<s:else>
+					<s:property value="message" escape="false" /><br>
+				</s:else>
+				<form action="InsertCansell"><input type="submit" value="キャンセル"></form>
 			</div><br>
 		</div>
 </body>

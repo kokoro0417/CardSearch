@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
-import com.internousdev.cs.dto.BuyItemDTO;
+import com.internousdev.cs.dto.CardDataDTO;
 import com.internousdev.cs.util.DBConnector;
 import com.internousdev.cs.util.DateUtil;
 
@@ -15,7 +15,7 @@ import com.internousdev.cs.util.DateUtil;
 public class BuyItemHistryDAO {
 	private DateUtil dateUtil = new DateUtil();
 
-	public void BuyHistry(String user_id, BuyItemDTO bDTO,Date date){
+	public void BuyHistry(String user_id, CardDataDTO BuyItemDTO,Date date){
 		DBConnector db = new DBConnector();
 		Connection con = db.getConnection();
 
@@ -23,13 +23,13 @@ public class BuyItemHistryDAO {
 
 		try{
 			String sql = "INSERT INTO buy_card_data VALUE(?,?,?,?,?);";
-			System.out.println(sql+bDTO.getCardname());
+			System.out.println(sql+BuyItemDTO.getCardname());
 
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, user_id);
-			ps.setString(2, bDTO.getCardname());
-			ps.setInt(3, bDTO.getTotal_price());
-			ps.setInt(4, bDTO.getCount());
+			ps.setString(2, BuyItemDTO.getCardname());
+			ps.setInt(3, BuyItemDTO.getTotal_price());
+			ps.setInt(4, BuyItemDTO.getCart_count());
 			ps.setString(5, dateUtil.getDate());
 
 			ps.execute();
@@ -47,8 +47,8 @@ public class BuyItemHistryDAO {
 
 	}
 
-	public ArrayList<BuyItemDTO> SearchHistry(String user_id){
-		ArrayList<BuyItemDTO> BuyHistry = new ArrayList<BuyItemDTO>();
+	public ArrayList<CardDataDTO> SearchHistry(String user_id){
+		ArrayList<CardDataDTO> BuyHistry = new ArrayList<CardDataDTO>();
 
 		DBConnector db = new DBConnector();
 		Connection con = db.getConnection();
@@ -63,7 +63,7 @@ public class BuyItemHistryDAO {
 			ResultSet rs = ps.executeQuery();
 
 			while(rs.next()){
-				BuyItemDTO tmpBIDTO = new BuyItemDTO();
+				CardDataDTO tmpBIDTO = new CardDataDTO();
 				tmpBIDTO.setCardname(rs.getString("cardname"));
 				tmpBIDTO.setTotal_count(rs.getInt("total_count"));
 				tmpBIDTO.setTotal_price(rs.getInt("total_price"));

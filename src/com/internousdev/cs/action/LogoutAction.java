@@ -12,6 +12,7 @@ public class LogoutAction extends ActionSupport implements SessionAware{
 
 	public String execute(){
 		session.clear();
+		System.out.println("Logout");
 
 		return SUCCESS;
 	}

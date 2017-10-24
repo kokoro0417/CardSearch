@@ -1,93 +1,93 @@
 package com.internousdev.cs.action;
 
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.Map;
 
-import com.internousdev.cs.dao.SearchDAO;
+import org.apache.struts2.interceptor.SessionAware;
+
 import com.internousdev.cs.dao.StockActionDAO;
-import com.internousdev.cs.dto.SearchDTO;
+import com.internousdev.cs.dto.CardDataDTO;
 import com.opensymphony.xwork2.ActionSupport;
 
-public class StockAction extends ActionSupport{
+public class StockAction extends ActionSupport implements SessionAware{
 
-	private String cardname;
-	private int add_stock;
-	private int card_stock;
+	public int card_stock=0;
 	public String message="";
-	public ArrayList<SearchDTO> aryDTO =new ArrayList<SearchDTO>();
+	public Map<String,Object> session;
+	//public CardDataDTO StockCardData;
+	private boolean SearchFlag = false;
+	public ArrayList<CardDataDTO> aryDTO =new ArrayList<CardDataDTO>();
 
-
-	public String execute(){
+	@SuppressWarnings("unchecked")
+	public String StockIn(){
 		String ret= ERROR;
-		String tmpname ="";
+		CardDataDTO StockCardData = (CardDataDTO)session.get("ChengeData");
+		CardDataDTO SearchCardData = (CardDataDTO)session.get("SearchCardData");
+		boolean addflag = false;
 
-		SearchDAO sDAO = new SearchDAO();
-		SearchDTO sDTO = new SearchDTO();
-		SearchDTO sDTO2 = new SearchDTO();
-		aryDTO = sDAO.Search(cardname, 0, "",1);
+		if(!(StockCardData == null)){
+			if(StockCardData.getAdd_stock() > 0){
+				addflag = true;
 
-		Iterator<SearchDTO> itr = aryDTO.iterator();
-		if(itr.hasNext()){
-			sDTO = aryDTO.get(0);
-			tmpname = sDTO.getCardname();
-		}
+				if(StockCardData.getCardname().equals(SearchCardData.getCardname())){
+					StockActionDAO saDAO = new StockActionDAO();
+					card_stock = StockCardData.getAdd_stock() + SearchCardData.getCard_stock();
+					StockCardData = saDAO.Stock(StockCardData.getCardname(), card_stock);
+					StockCardData.setNameflag(true);
 
-		if(!(cardname.equals(null))){
-			if(cardname.equals(tmpname)){
-				StockActionDAO saDAO = new StockActionDAO();
-				card_stock = add_stock + sDTO.getCard_stock();
-				sDTO2 = saDAO.Stock(cardname, card_stock);
-				sDTO2.setNameflag(true);
+					//aryDTO.set(0, StockCardData);
 
-				aryDTO.set(0, sDTO2);
-
-				ret= SUCCESS;
+					ret= SUCCESS;
+				}
 			}
 		}
 
 		if(ret.equals(SUCCESS)){
-			message = "追加完了です";
+			message = "在庫追加完了しました。";
 		}else{
-			if(sDTO2.isNameflag()){
+			if(StockCardData.isNameflag()){
 				message = "在庫追加エラーが発生しました。";
 			}else{
 				message = "カード名が見つかりませんでした。";
 			}
 
 		}
+		if(!(addflag)){
+			message = "入庫数が0以下です。";
+		}
+
+		aryDTO = (ArrayList<CardDataDTO>)session.get("SearchResult");
 
 		return ret;
 	}
 
-
-	public String getCardname() {
-		return cardname;
+	@SuppressWarnings("unchecked")
+	public String StockCansell(){
+		message = "在庫追加をキャンセルしました。";
+		aryDTO = (ArrayList<CardDataDTO>)session.get("SearchResult");
+		return SUCCESS;
 	}
 
 
-	public void setCardname(String cardname) {
-		this.cardname = cardname;
+	public void setSession(Map<String,Object> session){
+		this.session = session;
 	}
 
-
-	public int getAdd_stock() {
-		return add_stock;
+	public boolean isSearchFlag() {
+		return SearchFlag;
 	}
 
-
-	public void setAdd_stock(int add_stock) {
-		this.add_stock = add_stock;
+	public void setSearchFlag(boolean searchFlag) {
+		SearchFlag = searchFlag;
 	}
 
-
-	public int getCard_stock() {
-		return card_stock;
+/*	public CardDataDTO getStockCardData() {
+		return StockCardData;
 	}
 
-
-	public void setCard_stock(int card_stock) {
-		this.card_stock = card_stock;
-	}
+	public void setStockCardData(CardDataDTO stockCardData) {
+		StockCardData = stockCardData;
+	}*/
 
 
 

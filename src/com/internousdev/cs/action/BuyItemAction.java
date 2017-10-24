@@ -9,7 +9,7 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.internousdev.cs.dao.BuyItemDAO;
 import com.internousdev.cs.dao.BuyItemHistryDAO;
-import com.internousdev.cs.dto.BuyItemDTO;
+import com.internousdev.cs.dto.CardDataDTO;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class BuyItemAction extends ActionSupport implements SessionAware{
@@ -22,7 +22,7 @@ public class BuyItemAction extends ActionSupport implements SessionAware{
 	private Date dateUtil = new Date();
 
 	public Map<String,Object> session;
-	public ArrayList<BuyItemDTO> CartArray = new ArrayList<BuyItemDTO>();
+	public ArrayList<CardDataDTO> CartArray = new ArrayList<CardDataDTO>();
 
 	@SuppressWarnings("unchecked")
 	public String execute(){
@@ -30,15 +30,15 @@ public class BuyItemAction extends ActionSupport implements SessionAware{
 
 		if(session.get("cartin") != null){
 			buyflag = true;
-			CartArray = (ArrayList<BuyItemDTO>)session.get("cartin");
+			CartArray = (ArrayList<CardDataDTO>)session.get("cartin");
 
-			Iterator<BuyItemDTO> itr = CartArray.iterator();
+			Iterator<CardDataDTO> itr = CartArray.iterator();
 			BuyItemDAO bDAO = new BuyItemDAO();
-			BuyItemDTO tmpBIDTO = new BuyItemDTO();
+			CardDataDTO tmpBIDTO = new CardDataDTO();
 			BuyItemHistryDAO BIH_DAO = new BuyItemHistryDAO();
 			while (itr.hasNext()) {
-				tmpBIDTO = (BuyItemDTO) itr.next();
-				bDAO.BuyAction(tmpBIDTO.getCardname(), tmpBIDTO.getCount());
+				tmpBIDTO = (CardDataDTO) itr.next();
+				bDAO.BuyAction(tmpBIDTO.getCardname(), tmpBIDTO.getCart_count());
 				BIH_DAO.BuyHistry((String)session.get("now_user"), tmpBIDTO, dateUtil);
 
 			}

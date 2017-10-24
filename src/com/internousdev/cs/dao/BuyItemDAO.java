@@ -5,17 +5,17 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.internousdev.cs.dto.BuyItemDTO;
+import com.internousdev.cs.dto.CardDataDTO;
 import com.internousdev.cs.util.DBConnector;
 
 public class BuyItemDAO {
 
 	private boolean sqlflag = false ;
 
-	public BuyItemDTO BuyAction(String cardname,int buycount){
+	public CardDataDTO BuyAction(String cardname,int buycount){
 		DBConnector db = new DBConnector();
 		Connection con = db.getConnection();
-		BuyItemDTO bDTO = new BuyItemDTO();
+		CardDataDTO BuyItemDTO = new CardDataDTO();
 
 		String sql = "select * from carddata where cardname = ? ;";
 		System.out.println(sql);
@@ -30,16 +30,16 @@ public class BuyItemDAO {
 			if(rs.next()){
 				System.out.println("iftrue");
 
-				bDTO.setCardname(rs.getString("cardname"));
-				bDTO.setCount(buycount);
-				bDTO.setCard_stock(rs.getInt("card_stock"));
-				bDTO.setPrice(rs.getInt("price"));
+				BuyItemDTO.setCardname(rs.getString("cardname"));
+				BuyItemDTO.setCart_count(buycount);
+				BuyItemDTO.setCard_stock(rs.getInt("card_stock"));
+				BuyItemDTO.setPrice(rs.getInt("price"));
 				sqlflag = true;
 
-				if(buycount > bDTO.getCard_stock()){
-					bDTO.buyflag = false;
+				if(buycount > BuyItemDTO.getCard_stock()){
+					BuyItemDTO.buyflag = false;
 				}else{
-					bDTO.buyflag = true;
+					BuyItemDTO.buyflag = true;
 				}
 
 			}
@@ -47,9 +47,9 @@ public class BuyItemDAO {
 			e.printStackTrace();
 		}
 
-		if(sqlflag && bDTO.buyflag){
+		if(sqlflag && BuyItemDTO.buyflag){
 			sqlflag = false;
-			int stock = bDTO.getCard_stock()-buycount;
+			int stock = BuyItemDTO.getCard_stock()-buycount;
 
 			try{
 				sql = "update carddata set card_stock = ?  where cardname = ?;";
@@ -60,7 +60,7 @@ public class BuyItemDAO {
 
 				ps.execute();
 
-				bDTO.setCard_stock(stock);
+				BuyItemDTO.setCard_stock(stock);
 				System.out.println("stock_update");
 
 			}catch(SQLException e){
@@ -78,7 +78,7 @@ public class BuyItemDAO {
 
 
 
-		return bDTO;
+		return BuyItemDTO;
 	}
 
 

@@ -7,8 +7,7 @@ import java.util.Map;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.internousdev.cs.dao.SearchDAO;
-import com.internousdev.cs.dto.BuyItemDTO;
-import com.internousdev.cs.dto.SearchDTO;
+import com.internousdev.cs.dto.CardDataDTO;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class CartAddAction extends ActionSupport implements SessionAware{
@@ -22,24 +21,24 @@ public class CartAddAction extends ActionSupport implements SessionAware{
 	public String message = "";
 
 	public Map<String,Object> session;
-	public ArrayList<BuyItemDTO> CartArray = new ArrayList<BuyItemDTO>();
-	public ArrayList<SearchDTO> aryDTO =new ArrayList<SearchDTO>();
+	public ArrayList<CardDataDTO> CartArray = new ArrayList<CardDataDTO>();
+	public ArrayList<CardDataDTO> aryDTO =new ArrayList<CardDataDTO>();
 
 	@SuppressWarnings("unchecked")
 	public String execute(){
-		BuyItemDTO tmpBIDTO = new BuyItemDTO();
+		CardDataDTO CartInDTO = new CardDataDTO();
 
 
 		if(!(cardname.equals(""))){//カード名入力されていたら起動
 
 			if(session.get("cartin") != null){//既にカートに何か入っていたら起動
-				CartArray = (ArrayList<BuyItemDTO>)session.get("cartin");
+				CartArray = (ArrayList<CardDataDTO>)session.get("cartin");
 
-				Iterator<BuyItemDTO> itr = CartArray.iterator();
+				Iterator<CardDataDTO> itr = CartArray.iterator();
 				int tmpC = 0;
 				while (itr.hasNext()) {
-					tmpBIDTO = (BuyItemDTO) itr.next();
-					if(tmpBIDTO.getCardname().equals(cardname)){//カート内に現在選択商品が入っていたら位置記録
+					CartInDTO = (CardDataDTO) itr.next();
+					if(CartInDTO.getCardname().equals(cardname)){//カート内に現在選択商品が入っていたら位置記録
 						CartInCount = tmpC;
 					}
 					tmpC++;
@@ -47,30 +46,30 @@ public class CartAddAction extends ActionSupport implements SessionAware{
 			}
 
 			SearchDAO sDAO = new SearchDAO();
-			ArrayList<SearchDTO> arySDTO = sDAO.Search(cardname, 0, "", 0);//商品データ検索
+			ArrayList<CardDataDTO> SearchAryDTO = sDAO.Search(cardname, 0, "", 0);//商品データ検索
 
-			if(!(arySDTO.isEmpty())){//商品存在したら起動
-				SearchDTO sDTO = arySDTO.get(0);
+			if(!(SearchAryDTO.isEmpty())){//商品存在したら起動
+				CardDataDTO SearchDTO = SearchAryDTO.get(0);
 				if(CartInCount != 1000){//CartInCountの値が初期値から変更されていたらカート内に選択商品がある
-					tmpBIDTO = (BuyItemDTO)CartArray.get(CartInCount);
-					buycount = tmpBIDTO.getCount() + buycount;//カート内商品数上乗せ
+					CartInDTO = (CardDataDTO)CartArray.get(CartInCount);
+					buycount = CartInDTO.getCart_count() + buycount;//カート内商品数上乗せ
 					CartCheck = true;
 				}
 
-				if(buycount <= sDTO.getCard_stock()){//カートに入れたとき、カート内の個数が在庫を越えなければ
+				if(buycount <= SearchDTO.getCard_stock()){//カートに入れたとき、カート内の個数が在庫を越えなければ
 					buyflag = true;
 				}
 				if(buyflag){
 					message = "カートに商品を追加しました(仮)";
-					BuyItemDTO bDTO = new BuyItemDTO();
-					bDTO.setCardname(cardname);
-					bDTO.setCount(buycount);
-					bDTO.setPrice(price);
-					bDTO.setTotal_price(price * buycount);
+					CardDataDTO BuyItemDTO = new CardDataDTO();
+					BuyItemDTO.setCardname(cardname);
+					BuyItemDTO.setCart_count(buycount);
+					BuyItemDTO.setPrice(price);
+					BuyItemDTO.setTotal_price(price * buycount);
 					if(CartCheck){
-						CartArray.set(CartInCount, bDTO);
+						CartArray.set(CartInCount, BuyItemDTO);
 					}else{
-						CartArray.add(bDTO);
+						CartArray.add(BuyItemDTO);
 					}
 					session.put("cartin", CartArray);
 
@@ -90,7 +89,7 @@ public class CartAddAction extends ActionSupport implements SessionAware{
 
 
 
-		aryDTO = (ArrayList<SearchDTO>)session.get("SearchResult");
+		aryDTO = (ArrayList<CardDataDTO>)session.get("SearchResult");
 
 		return SUCCESS;
 	}

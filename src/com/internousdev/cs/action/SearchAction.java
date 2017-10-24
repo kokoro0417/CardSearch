@@ -7,7 +7,7 @@ import java.util.Map;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.internousdev.cs.dao.SearchDAO;
-import com.internousdev.cs.dto.SearchDTO;
+import com.internousdev.cs.dto.CardDataDTO;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class SearchAction extends ActionSupport implements SessionAware{
@@ -16,7 +16,6 @@ public class SearchAction extends ActionSupport implements SessionAware{
 	private String color;
 	private int mana =0;
 	private String cardtype ="";
-	private String ability;
 	private String Imgurl;
 	public String message="";
 	public int card_stock;
@@ -24,9 +23,8 @@ public class SearchAction extends ActionSupport implements SessionAware{
 	public boolean Searchflag = false;
 
 	public Map<String,Object> session;
-	public ArrayList<SearchDTO> aryDTO =new ArrayList<SearchDTO>();
+	public ArrayList<CardDataDTO> aryDTO =new ArrayList<CardDataDTO>();
 
-	SearchDTO sDTO = new SearchDTO();
 	SearchDAO sDAO = new SearchDAO();
 
 	public String execute(){
@@ -34,7 +32,7 @@ public class SearchAction extends ActionSupport implements SessionAware{
 
 		aryDTO = sDAO.Search(cardname,mana,cardtype,SearchCheck);
 
-		Iterator<SearchDTO> itr = aryDTO.iterator();
+		Iterator<CardDataDTO> itr = aryDTO.iterator();
 		if(!(itr.hasNext())){
 			message = "検索結果がありません";
 		}else{
@@ -90,17 +88,6 @@ public class SearchAction extends ActionSupport implements SessionAware{
 	public void setCardtype(String cardtype) {
 		this.cardtype = cardtype;
 	}
-
-
-	public String getAbility() {
-		return ability;
-	}
-
-
-	public void setAbility(String ability) {
-		this.ability = ability;
-	}
-
 
 	public String getImgurl() {
 		return Imgurl;
