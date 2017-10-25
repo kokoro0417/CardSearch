@@ -60,7 +60,7 @@ public class CartAddAction extends ActionSupport implements SessionAware{
 					buyflag = true;
 				}
 				if(buyflag){
-					message = "カートに商品を追加しました(仮)";
+					message = "カートに商品を追加しました";
 					CardDataDTO BuyItemDTO = new CardDataDTO();
 					BuyItemDTO.setCardname(cardname);
 					BuyItemDTO.setCart_count(buycount);

@@ -6,18 +6,22 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>カード追加確認画面</title>
-<link rel="stylesheet" href="Style.css">
+<link rel="stylesheet" href="css/Style.css">
 </head>
 <body>
 <div class="Sbox">
 			<div class="textbox">
+				<br>
 				<s:if test="ChengeFlag">
-				カード名：<s:property value="chenge_cardname"/><br>
-				色		：<s:property value="color"/><br>
-				マナ	：<s:property value="mana"/><br>
-				カード種：<s:property value="cardtype"/><br>
-				価格	：<s:property value="price"/>円<br>
-				入荷数	：<s:property value="add_stock"/><br>
+				以下のカードを追加します。よろしければOKボタンを押してください。<br><br>
+				<table border="1">
+				<tr><td>カード名</td><td><s:property value="chenge_cardname"/></td></tr>
+				<tr><td>色</td><td><s:property value="color"/></td></tr>
+				<tr><td>マナ</td><td><s:property value="mana"/></td></tr>
+				<tr><td>カード種</td><td><s:property value="cardtype"/></td></tr>
+				<tr><td>価格</td><td><s:property value="price"/>円</td></tr>
+				<tr><td>入荷数</td><td><s:property value="add_stock"/></td></tr>
+				</table><br>
 				<form action="InsertAction"><input type="hidden" value="<s:property value='SearchFlag'/>"><input type="submit" value="OK"></form>　
 				</s:if>
 				<s:else>

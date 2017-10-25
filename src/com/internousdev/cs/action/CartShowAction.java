@@ -15,6 +15,7 @@ public class CartShowAction extends ActionSupport implements SessionAware{
 
 	private String cardname;
 	private int buycount;
+	private int cart_count;
 	private int price;
 	private int total_price;
 
@@ -60,6 +61,14 @@ public class CartShowAction extends ActionSupport implements SessionAware{
 
 	public void setTotal_price(int total_price) {
 		this.total_price = total_price;
+	}
+
+	public int getCart_count() {
+		return cart_count;
+	}
+
+	public void setCart_count(int cart_count) {
+		this.cart_count = cart_count;
 	}
 
 

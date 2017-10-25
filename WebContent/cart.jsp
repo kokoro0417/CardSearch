@@ -6,21 +6,21 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>カート観覧画面</title>
-<link rel="stylesheet" href="Style.css">
+<link rel="stylesheet" href="css/Style.css">
 </head>
 <body>
 <form action="BuyItemAction">
-	<table>
+	<table border="1">
 			<tr>
 			<td>商品名</td>
 			<td>個数</td>
 			<td>金額</td>
-			<td>合計金額</td>
+			<td><div class="test">合計金額</div></td>
 		</tr>
 		<s:iterator value="CartArray">
 			<tr>
 				<td><s:property value="cardname"/></td>
-				<td><s:property value="count"/></td>
+				<td><s:property value="cart_count"/></td>
 				<td><s:property value="price"/></td>
 				<td><s:property value="total_price"/></td>
 			</tr>

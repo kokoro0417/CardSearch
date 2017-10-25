@@ -6,13 +6,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>購入履歴</title>
+<link rel="stylesheet" href="css/Style.css">
 </head>
 <body>
 
 <s:if test="BuyHistryFlag">
 	<br>
 	<br>
-	<table>
+	<table border="1">
 		<tr>
 			<td>商品名</td>
 			<td>個数</td>

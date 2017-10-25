@@ -6,17 +6,18 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>カード追加確認画面</title>
-<link rel="stylesheet" href="Style.css">
+<link rel="stylesheet" href="css/Style.css">
 </head>
 <body>
-<%-- 	<s:if test="message != ''">
-		<h3><s:property value="message"/></h3>
-	</s:if> --%>
 	<div class="Sbox">
+		<br>
 		<div class="textbox">
 			<s:if test="SearchFlag">
-			カード名：<s:property value="cardname"/><br>
-			入庫数	：<s:property value="add_stock"/><br>
+				以下のカードを入庫します。よろしければOKボタンを押してください。<br><br>
+			<table border="1">
+			<tr><td>カード名</td><td><s:property value="cardname"/></td></tr>
+			<tr><td>入庫数</td><td><s:property value="add_stock"/></td></tr>
+			</table><br>
 			<form action="StockAction"><input type="hidden" value="<s:property value='SearchFlag'/>"><input type="submit" value="OK"></form>　
 			</s:if>
 			<s:else>

@@ -6,6 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>マイページ画面ｓ</title>
+<link rel="stylesheet" href="css/Style.css">
 </head>
 <body>
 <s:property value="#session.now_user"/>さんのマイページ
